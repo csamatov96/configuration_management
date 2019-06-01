@@ -1,6 +1,6 @@
 ---
   - name: Installs wordpress
-    hosts: web
+    hosts: localhost
     become: yes
     become_sudo : sudo
     gather_facts: no
