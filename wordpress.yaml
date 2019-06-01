@@ -2,7 +2,7 @@
   - name: Installs wordpress
     hosts: localhost
     become: yes
-    become_sudo : sudo
+    become_method : sudo
     gather_facts: no
     ignore_errors: true 
     connection: ssh
@@ -33,6 +33,7 @@
         unarchive: #module name
           src: "/tmp/latest.tar.gz" #source to what to unzip 
           dest: /var/www/html/wordpress #where to store
+          remote_src: yes 
         become: yes
         become_method: sudo #to intall all packages and so on
 
