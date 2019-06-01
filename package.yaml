@@ -1,0 +1,10 @@
+---
+- host: localhost
+  task:
+    - name: Install 1 package
+      become: yes
+      become_method: sudo
+      package:
+        name: httpd
+        state: latest 
+      
