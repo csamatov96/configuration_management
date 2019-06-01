@@ -31,7 +31,7 @@
 
       - name: Unzip Wordpress file
         unarchive: #module name
-          src: "/tmp/latest.tar.gz" #source to what to unzip 
+          src: "/tmp/worpress-5.2.1.tar.gz" #source to what to unzip 
           dest: /var/www/html/wordpress #where to store
           remote_src: yes 
         become: yes
