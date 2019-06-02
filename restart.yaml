@@ -1,0 +1,12 @@
+---
+- name: restarts all types of OS
+  
+  vars_prompt: #get an input from a user by using that module 
+      - name: OS_TYPE
+        prompt: "What OS to restart?" #the following will be prompted 
+        private: no #let the user to see what he inputs 
+  hosts: all 
+  tasks:
+      - name: Restarts
+        when: ansible_distribution == "Debian" #condition, the user inputs will be compared here
+        reboot: #Ansible way of restarting 
