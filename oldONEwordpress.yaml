@@ -1,0 +1,56 @@
+---
+  - name: Installs wordpress #name of the playbook
+    hosts: special_hosts #specified in /etc/ansible/hosts
+    become: yes #
+    become_method : sudo #wanna get root privileges
+    #gather_facts: no #This module is automatically called by playbooks to gather useful variables about remote hosts that can be used in playbooks.
+                     #It can also be executed directly by /usr/bin/ansible to check what variables are available to a host.
+                     #Gather facts or a 'setup' task will connect to the managed host, run a script that collects a bunch of data, then it will populate the hostvars.
+                     #If you don't gather facts, then those variables will never be collected and set. If you don't actually need the facts for your plays/tasks feel free to skip it. But many roles and plays you will use depend on knowing the OS/release/version and other things that are only detected when gathering facts. 
+
+    ignore_errors: true  
+    #connection: ssh
+    tasks: #header
+      - name: Install necessary packages
+        package:
+            name: "{{item}}" #for every 
+            state: latest
+        with_items:
+          - wget
+          - unzip
+          - vim 
+          - php-gd
+          - httpd
+          - mysql
+          - mariadb-server
+          - php
+          - php-mysql
+          - php-fpm 
+        ignore_errors: true 
+
+      - name: Download wordpress package
+        get_url: #Ansible useful package 
+          url: "https://wordpress.org/latest.tar.gz"
+          dest: /tmp/ #destination where to store
+
+      - name: Unzip Wordpress file
+        unarchive: #Ansible module name
+          src: "/tmp/worpress-5.2.1.tar.gz" #source to where the file was downloaded   
+          dest: /var/www/html/wordpress #where to store after unzipping 
+          remote_src: yes #Ansible module name 
+        become: yes
+        become_method: sudo #to intall all packages and so on
+
+      - name: Move files to html folder
+        shell: "mv /var/www/html/wordpress/* /var/www/html"
+        become: yes
+        become_method: sudo #need privileges 
+        ignore_errors: yes #in case if we got any errors
+
+      - name: restart httpd
+        systemd: #Ansible package name similar to 'systemctl'
+          name: httpd
+          state: started #started, restarted stop 
+          enabled: yes 
+        become: yes
+        become_method: sudo #need privileges
