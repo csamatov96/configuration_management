@@ -12,8 +12,8 @@
         become: yes
         become_method: sudo
 
-      - name: restart the system 
+      #- name: restart the system 
         #command: "shutdown -r now" #linux way of doing it 
-        reboot: #ansible way of restarting 
+       # reboot: #ansible way of restarting 
 
 
