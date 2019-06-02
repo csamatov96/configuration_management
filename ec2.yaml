@@ -10,3 +10,4 @@
           #group: webserver
           count: 3
           vpc_subnet_id: subnet-bc2b54c6
+          region: us-east-2b
