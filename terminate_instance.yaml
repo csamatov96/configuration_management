@@ -13,4 +13,4 @@
       ec2:
           instance_ids: "{{ID}}" #i-02ee7cd9bf196d151 #vm1
           state: absent #terminate #stopped, started 
-          region: us-east-2b
+          region: "{{REGION}}" #us-east-2b
