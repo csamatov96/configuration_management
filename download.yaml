@@ -7,8 +7,11 @@
     - name: URL #whatever he gives save it and uppercase URL
       prompt: "Give me the url: " #give me the url to download 
       private: no #to let the user see what he inputs
-  tasks:
+    - name: DESTINATION #whatever he gives save it and uppercase URL
+      prompt: "Give me the location to put: " #give me the url to download 
+      private: no #to let the user see what he inputs
+  tasks: #so it'll do 2 things 1st it'll ask what to download and where to download
     - name: Download 1 package
       get_url:
         url: "{{URL}}" #this is how u r going to pass the variable 
-        dest: /tmp/
+        dest: {{DESTINATION}} 
