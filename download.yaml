@@ -10,7 +10,7 @@
     - name: HOST
       prompt: "Which host?"
       private: no
-  hosts: localhost
+  hosts: "{{HOST}}"
   become: yes
   become_method: sudo
   tasks: #so it'll do 2 things 1st it'll ask what to download and where to download
