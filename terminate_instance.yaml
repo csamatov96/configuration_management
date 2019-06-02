@@ -1,8 +1,16 @@
 ---
 - name: Terminates an instance 
+  vars_prompt:
+    - name: ID
+      prompt: "Instance ID to terminate?"
+      private: no 
+    - name: REGION
+      prompt: "REGION of the instance"
+      private: no 
   hosts: localhost 
   tasks:
     - name: Terminate instances
       ec2:
-          instance_ids: i-02ee7cd9bf196d151 #vm1
+          instance_ids: "{{ID}}" #i-02ee7cd9bf196d151 #vm1
           state: absent #terminate #stopped, started 
+          region: us-east-2b
