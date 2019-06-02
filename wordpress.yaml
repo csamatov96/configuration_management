@@ -1,6 +1,6 @@
 ---
   - name: Installs wordpress #name of the playbook
-    hosts: all #specified in /etc/ansible/hosts
+    hosts: special_hosts #specified in /etc/ansible/hosts
     become: yes #
     become_method : sudo #wanna get root privileges
     gather_facts: no #This module is automatically called by playbooks to gather useful variables about remote hosts that can be used in playbooks.
