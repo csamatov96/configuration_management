@@ -3,7 +3,7 @@
     tasks:
       - name: update kernel to latest
         #when: ansible_os_family == "RedHat" #only RedHat machines will be restarted, if RedHat machine, do something 
-        when: ansible_destribution == "CentOS"
+        when: ansible_distribution == "CentOS"
         #when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
       
         package:
@@ -13,6 +13,7 @@
         become_method: sudo
 
       - name: restart the system 
+        when: ansible_distribution == "CentOS"
         #command: "shutdown -r now" #linux way of doing it 
         reboot: #ansible way of restarting 
 
