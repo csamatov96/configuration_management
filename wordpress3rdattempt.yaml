@@ -1,0 +1,56 @@
+---
+ - name : Installs wordpress #
+   hosts: special_hosts #/etc/ansible/hosts
+   become : yes #
+   become_method : sudo #privileges 
+   tasks:
+     - name : Install necessary packages
+       package: 
+         name : "{{item}}" #for every ITEM
+         state: latest 
+       with_items: #in the following list INSTALL
+          - wget
+          - unzip
+          - httpd
+          - php 
+          - php-gd
+          - mysql
+          - mariadb-server
+          - php-mysql
+          - php-fpm 
+       ignore_errors: true 
+     - name : install epel-release #name of the package
+       shell: "sudo wget -q http://rpms.remirepo.net/enterprise/remi-release-7.rpm " #install the following
+     - name : config manager enabled #name of the package
+       shell: "sudo yum-config-manager --enable remi-php70" #install the following
+     - name : update httpd PHP #name of the package
+       shell: "sudo yum update httpd php php-mysql mysql" #install the following
+     
+
+     - name: Download wordpress package
+       get_url: #package that lets to download from inet 
+          url: "https://wordpress.org/latest.tar.gz"
+          dest: /tmp/ #where to store
+
+     - name: Unzip wordpress file
+       unarchive: 
+         src: "/tmp/wordpress-5.2.1.tar.gz" #after downloding 
+         dest: "/var/www/html/" #place there
+         remote_src: yes 
+       become: yes
+       become_method: sudo #privileges
+
+     - name :  Move files to html folder
+       shell: "mv /var/www/html/wordpress/*  /var/www/html/" #move everything from WORDPRESS to HTML
+       become: yes
+       become_method: sudo #privileges
+       ignore_errors: yes
+
+
+     - name: restart httpd
+       systemd: #similar to 'systemctl/service'
+         name: httpd
+         state: restarted
+         enabled: yes 
+       become: yes
+       become_method: sudo #privileges 
