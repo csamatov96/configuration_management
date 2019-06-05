@@ -14,7 +14,8 @@
         vpc_subnet_id: subnet-bc2b54c6
         region: us-east
         assign_public_ip: yes 
-        instance_tags: debian 
+        instance_tags: 
+                    Name: Debian 
         #monitoring: no 
         #delete_on_termination: true
     
@@ -29,7 +30,8 @@
         vpc_subnet_id: subnet-bc2b54c6
         region: us-east
         assign_public_ip: yes 
-        instance_tags: ubuntu  
+        instance_tags: 
+                    Name: Ubuntu  
         #delete_on_termination: true
         user_data: #!/bin/sh 
                    sudo apt-get install python -y     
