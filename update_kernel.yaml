@@ -10,10 +10,12 @@
             state: latest
         become: yes
         become_method: sudo #privileges
-
+      
       - name: restart the system #name of the 2nd TASK
+        
         become: yes
         become_methd: sudo #privileges
+        
         when: ansible_distribution == "CentOS" #condition 
         #command: "shutdown -r now" #linux way of doing it  
         reboot: #ansible way of restarting 
