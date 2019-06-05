@@ -15,8 +15,8 @@
         vpc_subnet_id: subnet-bc2b54c6
         assign_public_ip: yes 
         instance_tags: debian 
-        monitoring: no 
-        delete_on_termination: true
+        #monitoring: no 
+        #delete_on_termination: true
     
     - name: launch Ubuntu instance 
       ec2:
@@ -30,6 +30,6 @@
         vpc_subnet_id: subnet-bc2b54c6
         assign_public_ip: yes 
         instance_tags: ubuntu  
-        delete_on_termination: true
+        #delete_on_termination: true
         user_data: #!/bin/sh 
                    sudo apt-get install python -y     
