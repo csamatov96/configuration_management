@@ -1,6 +1,6 @@
 ---
  - name : Installs wordpress #name of the playbook
-   hosts: special_hosts #defined /etc/ansible/hosts
+   hosts: my_hosts #defined /etc/ansible/hosts
    become : yes #
    become_method : sudo #privileges 
    tasks: #header 
