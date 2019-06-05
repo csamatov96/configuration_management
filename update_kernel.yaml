@@ -1,5 +1,5 @@
 ---
-  - hosts: localhost #defined in /etc/ansible/hosts
+  - hosts: my_hosts #defined in /etc/ansible/hosts
     tasks: #header 
       - name: update kernel to latest #name of the 1st TASK
         #when: ansible_os_family == "RedHat" #only RedHat machines will be updated and restarted, if RedHat machine, do something 
