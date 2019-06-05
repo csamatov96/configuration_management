@@ -1,0 +1,35 @@
+---
+- name: Creates Ubuntu and Debian ec2 
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: launch Debian instance
+      ec2:
+        key_name: myMAC_KEY
+        instance_type: t2.micro 
+        image: debian-stretch-hvm-x86_64-gp2-2019-05-14-84483-572488bb-fc09-4638-8628-e1e1d26436f4-ami-0357081a1383dc76b.4 (ami-067e80109aff3e2c2)
+        region: us-east
+        #wait: yes
+        #group:
+        count: 1
+        vpc_subnet_id: subnet-bc2b54c6
+        assign_public_ip: yes 
+        instance_tags: debian 
+        monitoring: no 
+        delete_on_termination: true
+    
+    - name: launch Ubuntu instance 
+      ec2:
+        key_name: myMAC_KEY
+        instance_type: t2.micro 
+        image: ubuntu-xenial-16.04-amd64-server-20180306-SQL_2017_Web-2018.04.10 (ami-80a898e5)
+        region: us-east
+        #wait: yes
+        #group:
+        count: 1
+        vpc_subnet_id: subnet-bc2b54c6
+        assign_public_ip: yes 
+        instance_tags: ubuntu  
+        delete_on_termination: true
+        user_data: #!/bin/sh 
+                   sudo apt-get install python -y     
