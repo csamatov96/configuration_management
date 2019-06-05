@@ -10,6 +10,6 @@
         count: 3
         vpc_subnet_id: subnet-bc2b54c6
         region: us-east-2
-        assign_public_ip: yes 
+        #assign_public_ip: yes 
         instance_tags:
                       Name: CentOs7
