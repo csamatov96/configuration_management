@@ -1,16 +1,19 @@
 ---
-- name: Terminates an instance 
-  vars_prompt:
-    - name: ID
-      prompt: "Instance ID to terminate?"
-      private: no 
-    - name: REGION
+- name: Terminates an instance #name of the playbook
+  vars_prompt: #by using that module, we will get user's input
+    
+    - name: ID #and it's where it'll be stored after prompting 
+      prompt: "Instance ID to terminate?" #the following will be prompted
+      private: no #let the user to see what he inputs
+    
+    - name: REGION #and it's where it'll be stored after prompting 
       prompt: "REGION of the instance"
-      private: no 
-  hosts: localhost 
-  tasks:
-    - name: Terminate instances
-      ec2:
+      private: no #let the user to see what he inputs
+  
+  hosts: localhost #defined in /etc/ansible/hosts
+  tasks: #header
+    - name: Terminate instances #name of the 1st TASK
+      ec2: #by using that module we can specify
           instance_ids: "{{ID}}" #i-02ee7cd9bf196d151 #vm1
           state: absent #terminate #stopped, started 
           region: "{{REGION}}" #us-east-2b

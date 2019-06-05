@@ -1,9 +1,9 @@
 --- 
-- hosts: localhost
-  task:
-    - name: Add 1 user
-      user: 
+- hosts: localhost #defined in /etc/ansible/hosts
+  tasks: #header
+    - name: Add 1 user #name of the 1st TASK
+      user: #by using that module, we can add users to any Linux system  
           name: bob
           state: present 
       become: yes 
-      become_method: sudo 
+      become_method: sudo #privileges

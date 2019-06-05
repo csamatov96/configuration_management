@@ -1,10 +1,10 @@
 ---
-- hosts: localhost
-  task:
-    - name: Install 1 package
+- hosts: localhost #defined in /etc/ansible/hosts
+  tasks: #
+    - name: Install 1 package #name of the 1st TASK
       become: yes
-      become_method: sudo
-      package:
-        name: httpd
+      become_method: sudo #privileges
+      package: #module itself
+        name: httpd #install the following 
         state: latest 
       

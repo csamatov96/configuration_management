@@ -1,12 +1,12 @@
 ---
-- name: restarts all types of OS
+- name: restarts all types of OS #name of the playbook
   
-  vars_prompt: #get an input from a user by using that module 
-      - name: OS_TYPE
-        prompt: "What OS to restart?" #the following will be prompted 
+  vars_prompt: #by using that module get the input from a user 
+      - name: OS_TYPE #
+        prompt: "What OS to restart?" #the following string will be prompted 
         private: no #let the user to see what he inputs 
-  hosts: all 
-  tasks:
-      - name: Restarts
+  hosts: all #defined in /etc/ansible/hosts
+  tasks: #header
+      - name: Restarts #name of the 1st TASK
         when: ansible_distribution == "Debian" #condition, the user inputs will be compared here
-        reboot: #Ansible way of restarting 
+        reboot: #ansible way of restarting 

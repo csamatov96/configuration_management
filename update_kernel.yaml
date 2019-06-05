@@ -1,19 +1,18 @@
 ---
-  - hosts: my_hosts
-    tasks:
-      - name: update kernel to latest
+  - hosts: my_hosts #defined in /etc/ansible/hosts
+    tasks: #header 
+      - name: update kernel to latest #name of the 1st TASK
         #when: ansible_os_family == "RedHat" #only RedHat machines will be restarted, if RedHat machine, do something 
-        when: ansible_distribution == "CentOS"
+        when: ansible_distribution == "CentOS" #condition 
         #when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
-      
-        package:
+        package: #by using that module, install the following 
             name: kernel
             state: latest
         become: yes
-        become_method: sudo
+        become_method: sudo #privileges
 
-      - name: restart the system 
-        when: ansible_distribution == "CentOS"
+      - name: restart the system #name of the 2nd TASK
+        when: ansible_distribution == "CentOS" #condition 
         #command: "shutdown -r now" #linux way of doing it 
         reboot: #ansible way of restarting 
 

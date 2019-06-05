@@ -1,9 +1,9 @@
 ---
-  - hosts: localhost
-    tasks:
-        - name: start specific service
-          service:
+  - hosts: localhost #defined in /etc/ansible/hosts
+    tasks: #header
+        - name: start specific service #name of the 1st TASK
+          service: #by using that module, we'll be able to restart the HTTPD
               name: httpd
               state: restarted
           become: yes
-          become_methd: sudo 
+          become_methd: sudo #privileges 

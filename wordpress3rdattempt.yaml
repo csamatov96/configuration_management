@@ -1,14 +1,14 @@
 ---
- - name : Installs wordpress #
-   hosts: special_hosts #/etc/ansible/hosts
+ - name : Installs wordpress #name of the playbook
+   hosts: special_hosts #defined /etc/ansible/hosts
    become : yes #
    become_method : sudo #privileges 
-   tasks:
-     - name : Install necessary packages
-       package: 
+   tasks: #header 
+     - name : Install necessary packages #name of the 1st TASK
+       package: #by using that module, we are able to install anything from inet
          name : "{{item}}" #for every ITEM
          state: latest 
-       with_items: #in the following list INSTALL
+       with_items: #in the following list of items, INSTALL THAT ITEM
           - wget
           - unzip
           - httpd
@@ -19,38 +19,38 @@
           - php-mysql
           - php-fpm 
        ignore_errors: true 
-     - name : install epel-release #name of the package
-       shell: "sudo wget -q http://rpms.remirepo.net/enterprise/remi-release-7.rpm " #install the following
-     - name : config manager enabled #name of the package
-       shell: "sudo yum-config-manager --enable remi-php70" #install the following
-     - name : update httpd PHP #name of the package
-       shell: "sudo yum update httpd php php-mysql mysql" #install the following
+     - name : install epel-release #name of the 2nd TASK
+       shell: "sudo wget -q http://rpms.remirepo.net/enterprise/remi-release-7.rpm " #install the following by using shell module
+     - name : config manager enabled #name of the 3rd TASK
+       shell: "sudo yum-config-manager --enable remi-php70" #install the following by using shell module
+     - name : update httpd PHP #name of the 3rd TASK
+       shell: "sudo yum update httpd php php-mysql mysql" #install the following, by using shell module
      
 
-     - name: Download wordpress package
-       get_url: #package that lets to download from inet 
-          url: "https://wordpress.org/latest.tar.gz"
+     - name: Download wordpress package #name of the 4th TASK
+       get_url: #module that lets to download something from inet 
+          url: "https://wordpress.org/latest.tar.gz" #path 
           dest: /tmp/ #where to store
 
-     - name: Unzip wordpress file
-       unarchive: 
+     - name: Unzip wordpress file #name of the 5th TASK
+       unarchive: #module name 
          src: "/tmp/wordpress-5.2.1.tar.gz" #after downloding 
          dest: "/var/www/html/" #place there
-         remote_src: yes 
+         remote_src: yes #???
        become: yes
        become_method: sudo #privileges
 
-     - name :  Move files to html folder
+     - name :  Move files to html folder #name of the 6th TASK
        shell: "mv /var/www/html/wordpress/*  /var/www/html/" #move everything from WORDPRESS to HTML
        become: yes
        become_method: sudo #privileges
-       ignore_errors: yes
+       ignore_errors: yes #
 
 
-     - name: restart httpd
-       systemd: #similar to 'systemctl/service'
+     - name: restart httpd #name of the 7th TASK
+       systemd: #similar to 'systemctl/service', by using that module, restart HTTPD
          name: httpd
          state: restarted
-         enabled: yes 
+         enabled: yes #and do this, so it'll be active even after restarting the system
        become: yes
        become_method: sudo #privileges 

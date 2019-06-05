@@ -1,14 +1,14 @@
 ---
- - name : Installs wordpress
-   hosts: special_hosts
-   become : yes
-   become_method : sudo 
-   tasks:
-     - name : Install necessary packages
-       package: 
-         name : "{{item}}"
+ - name : Installs wordpress #name of the playbook
+   hosts: special_hosts #defined in /etc/ansible/hosts
+   become : yes 
+   become_method : sudo #privileges 
+   tasks: #header 
+     - name : Install necessary packages #name of the 1st TASK
+       package: #by using that module, install the following packages 
+         name : "{{item}}" #for EVERY ITEM
          state: latest
-       with_items: 
+       with_items: #of the following list of items, install that item 
           - wget
           - unzip
           - httpd
@@ -18,34 +18,34 @@
           - mariadb-server
           - php-mysql
           - php-fpm 
-       ignore_errors: true 
-     - name : New shell for updated php
-       shell: "sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2"
+       ignore_errors: true #
+     - name : New shell for updated php #name of the 2nd TASK
+       shell: "sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2" #by using that module, install the following
 
-     - name: Download wordpress package
-       get_url: 
-          url: "https://wordpress.org/latest.tar.gz"
-          dest: /tmp/
+     - name: Download wordpress package #name of the 3rd TASK
+       get_url: #by using that module, we can download something from inet 
+          url: "https://wordpress.org/latest.tar.gz" #path 
+          dest: /tmp/ #it's where it'll be stored
 
-     - name : Unzip wordpress file
-       unarchive: 
-         src: "/tmp/wordpress-5.2.1.tar.gz"
-         dest: "/var/www/html/"
-         remote_src: yes 
+     - name : Unzip wordpress file #name of the 4th TASK
+       unarchive: #by using that module, we can unzip something we downloaded  
+         src: "/tmp/wordpress-5.2.1.tar.gz" #path 
+         dest: "/var/www/html/" #it's where it'll be stored
+         remote_src: yes #???
        become: yes
-       become_method: sudo 
+       become_method: sudo #privileges
 
-     - name :  Move files to html folder
-       shell: "mv /var/www/html/wordpress/*  /var/www/html/"
+     - name :  Move files to html folder #name of the 5th TASK
+       shell: "mv /var/www/html/wordpress/*  /var/www/html/" #by using that module, u got access to SHELL and u can do anything
        become: yes
-       become_method: sudo 
+       become_method: sudo #privileges
        ignore_errors: yes
 
 
-     - name: restart httpd
-       systemd: 
+     - name: restart httpd #name of the 6th TASK 
+       systemd: #it's like systemctl or service, by using that module, restart HTTPD 
          name: httpd
-         state: restarted
+         state: restarted 
          enabled: yes
        become: yes
-       become_method: sudo
+       become_method: sudo #privileges

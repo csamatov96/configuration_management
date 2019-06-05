@@ -8,15 +8,15 @@
                      #Gather facts or a 'setup' task will connect to the managed host, run a script that collects a bunch of data, then it will populate the hostvars.
                      #If you don't gather facts, then those variables will never be collected and set. If you don't actually need the facts for your plays/tasks feel free to skip it. But many roles and plays you will use depend on knowing the OS/release/version and other things that are only detected when gathering facts. 
 
-    ignore_errors: true  
+    ignore_errors: true #name of the module
     #connection: ssh
     tasks: #header
-      - name: Install necessary packages
-        package:
-            name: "{{item}}" #for every 
+      - name: Install necessary packages #name of 1st TASK
+        package: #module itself
+            name: "{{item}}" #for every ITEM
             state: latest
-        with_items:
-          - wget
+        with_items: #for loop 
+          - wget #install the following packages
           - unzip
           - vim 
           - php-gd
@@ -28,12 +28,12 @@
           - php-fpm 
         ignore_errors: true 
 
-      - name: Download wordpress package
-        get_url: #Ansible useful package 
+      - name: Download wordpress package #name of the 2nd TASK
+        get_url: #Ansible useful module 
           url: "https://wordpress.org/latest.tar.gz"
           dest: /tmp/ #destination where to store
 
-      - name: Unzip Wordpress file
+      - name: Unzip Wordpress file #name of the 3rd TASK
         unarchive: #Ansible module name
           src: "/tmp/worpress-5.2.1.tar.gz" #source to where the file was downloaded   
           dest: /var/www/html/wordpress #where to store after unzipping 
