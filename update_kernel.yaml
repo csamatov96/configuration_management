@@ -1,5 +1,7 @@
 ---
   - hosts: my_hosts #defined in /etc/ansible/hosts
+    become: yes
+    become_method: sudo #privileges
     tasks: #header 
       - name: update kernel to latest #name of the 1st TASK
         #when: ansible_os_family == "RedHat" #only RedHat machines will be updated and restarted, if RedHat machine, do something 
@@ -8,8 +10,7 @@
         package: #by using that module, install the following 
             name: kernel
             state: latest
-        become: yes
-        become_method: sudo #privileges
+
       - name: Restart the system 
         when: ansible_distribution == "CentOS" #condition
         reboot: #ansible way of restarting
