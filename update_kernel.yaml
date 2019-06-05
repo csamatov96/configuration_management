@@ -1,10 +1,10 @@
 ---
-  - hosts: my_hosts #defined in /etc/ansible/hosts
+  - hosts: localhost #defined in /etc/ansible/hosts
     tasks: #header 
       - name: update kernel to latest #name of the 1st TASK
-        #when: ansible_os_family == "RedHat" #only RedHat machines will be restarted, if RedHat machine, do something 
-        when: ansible_distribution == "CentOS" #condition 
-        #when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
+        #when: ansible_os_family == "RedHat" #only RedHat machines will be updated and restarted, if RedHat machine, do something 
+        #when: ansible_distribution == "CentOS" #condition 
+        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
         package: #by using that module, install the following 
             name: kernel
             state: latest

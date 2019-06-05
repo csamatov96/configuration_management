@@ -5,7 +5,7 @@
   tasks:
     - name: launch Debian instance
       ec2:
-        key_name: myMAC_KEY
+        key_name: ANSIBLE_TOWER_CLI
         instance_type: t2.micro 
         image: ami-067e80109aff3e2c2
         #wait: yes
@@ -16,12 +16,13 @@
         assign_public_ip: yes 
         instance_tags: 
                     Name: Debian 
+        group_id: sg-090d492773e57659d
         #monitoring: no 
         #delete_on_termination: true
     
     - name: launch Ubuntu instance 
       ec2:
-        key_name: myMAC_KEY
+        key_name: ANSIBLE_TOWER_CLI
         instance_type: t2.micro 
         image: ami-80a898e5
         #wait: yes
@@ -31,7 +32,8 @@
         region: us-east-2
         assign_public_ip: yes 
         instance_tags: 
-                    Name: Ubuntu  
+                    Name: Ubuntu 
+        group_id: sg-090d492773e57659d
         #delete_on_termination: true
         user_data: #!/bin/sh 
                    sudo apt-get install python -y     
