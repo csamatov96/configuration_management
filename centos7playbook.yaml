@@ -1,0 +1,15 @@
+---
+- name: Creates Centos7 ec2 instance 
+  hosts: localhost
+  tasks:
+    - name: let's play
+      ec2:
+        key_name: ANSIBLE_TOWER_CLI
+        instance_type: t2.micro
+        image: ami-0f2b4fc905b0bd1f1
+        count: 3
+        vpc_subnet_id: subnet-bc2b54c6
+        region: us-east-2
+        assign_public_ip: yes 
+        instance_tags:
+                      Name: CentOs7
