@@ -13,9 +13,5 @@
         #assign_public_ip: yes 
         instance_tags:
                       Name: CentOs7
-        rules:
-          - proto: ssh 
-            from_port: 22
-            to_port: 22
-            cidr_ip: 0.0.0.0/0 
+        group_id: sg-090d492773e57659d
             
