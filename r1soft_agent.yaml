@@ -20,100 +20,113 @@
                 state: latest 
           notify: R1SOFT_INSTALLED_ON_CENTOS_7 
 
-        - name: Start agent
+       #- name: Start agent
               #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
-          systemd:
-                name: sbm-agent #it was cdp
-                state: restarted 
+       #  systemd:
+       #         name: sbm-agent #it was cdp
+       #         state: restarted 
 
         - name: Get key
               #when: ansible_distribution == "CentOS"
           shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
         
         when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7" #(BLOCK IS MORE ELEGANT WAY)
-      handers:
+  
+
+
+      #this is for centos 6
+  - block: #by using that module, we can apply one rule to multiple tasks
+        #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
+        - name: Create a Repository # 
+          copy: #from local to remote system
+              src: r1soft.repo
+              dest: /etc/yum.repos.d/r1soft.repo 
+
+        - name: Install r1soft agent
+              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
+          package:
+                name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
+                state: latest 
+          notify: R1SOFT_INSTALLED_ON_CENTOS_6 #
+        
+        - name: Get key
+              #when: ansible_distribution == "CentOS"
+          shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
+        
+    when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" #(BLOCK IS MORE ELEGANT WAY)
+      
+
+      #this is for centos 8
+  - block: #by using that module, we can apply one rule to multiple tasks
+        #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
+        - name: Create a Repository # 
+          copy: #from local to remote system
+              src: r1soft.repo
+              dest: /etc/yum.repos.d/r1soft.repo 
+
+        - name: Install r1soft agent
+              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
+          package:
+                name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
+                state: latest 
+          notify: R1SOFT_INSTALLED_ON_CENTOS_8
+
+        - name: Start agent
+              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
+          service: #for centos6 not systemd
+                name: sbm-agent #it was sbm-agent, cdp-agent for centos6 
+                state: restarted 
+
+        - name: Get key
+              #when: ansible_distribution == "CentOS"
+          shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
+        
+    when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "8" #(BLOCK IS MORE ELEGANT WAY)
+
+        #this is for Fedora
+  - block: #by using that module, we can apply one rule to multiple tasks
+        #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
+        - name: Create a Repository # 
+          copy: #from local to remote system
+              src: r1soft.repo
+              dest: /etc/yum.repos.d/r1soft.repo 
+
+        - name: Install r1soft agent
+              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
+          package:
+                name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
+                state: latest 
+          notify: R1SOFT_INSTALLED_ON_FEDORA_28
+
+        - name: Start agent
+              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
+          service: #for centos6 not systemd
+                name: sbm-agent #it was sbm-agent, cdp-agent for centos6 
+                state: restarted 
+
+        - name: Get key
+              #when: ansible_distribution == "CentOS"
+          shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
+        
+    when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "28" #(BLOCK IS MORE ELEGANT WAY)
+
+
+
+    handlers:
         - name: R1SOFT_INSTALLED_ON_CENTOS_7
           systemd:
               name: sbm-agent
               state: restarted
-
-
-      #this is for centos 6
-      - block: #by using that module, we can apply one rule to multiple tasks
-        #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
-        - name: Create a Repository # 
-          copy: #from local to remote system
-              src: r1soft.repo
-              dest: /etc/yum.repos.d/r1soft.repo 
-
-        - name: Install r1soft agent
-              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
-          package:
-                name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
-                state: latest 
-          notify: R1SOFT_INSTALLED #
-
-        - name: Start agent
-              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
-          service: #for centos6 not systemd
-                name: sbm-agent #it was sbm-agent, cdp-agent for centos6 
-                state: restarted 
-
-        - name: Get key
-              #when: ansible_distribution == "CentOS"
-          shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
-        
-        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" #(BLOCK IS MORE ELEGANT WAY)
-
-
-      #this is for centos 8
-      - block: #by using that module, we can apply one rule to multiple tasks
-        #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
-        - name: Create a Repository # 
-          copy: #from local to remote system
-              src: r1soft.repo
-              dest: /etc/yum.repos.d/r1soft.repo 
-
-        - name: Install r1soft agent
-              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
-          package:
-                name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
-                state: latest 
-
-        - name: Start agent
-              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
-          service: #for centos6 not systemd
-                name: sbm-agent #it was sbm-agent, cdp-agent for centos6 
-                state: restarted 
-
-        - name: Get key
-              #when: ansible_distribution == "CentOS"
-          shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
-        
-        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "8" #(BLOCK IS MORE ELEGANT WAY)
-
-        #this is for Fedora
-      - block: #by using that module, we can apply one rule to multiple tasks
-        #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
-        - name: Create a Repository # 
-          copy: #from local to remote system
-              src: r1soft.repo
-              dest: /etc/yum.repos.d/r1soft.repo 
-
-        - name: Install r1soft agent
-              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
-          package:
-                name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
-                state: latest 
-
-        - name: Start agent
-              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
-          service: #for centos6 not systemd
-                name: sbm-agent #it was sbm-agent, cdp-agent for centos6 
-                state: restarted 
-
-        - name: Get key
-              #when: ansible_distribution == "CentOS"
-          shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
-        
-        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "28" #(BLOCK IS MORE ELEGANT WAY)
+        - name: R1SOFT_INSTALLED_ON_CENTOS_6
+          service:
+              name: sbm-agent
+              state: restarted
+        - name: R1SOFT_INSTALLED_ON_CENTOS_8
+          systemd:
+              name: sbm-agent
+              state: restarted
+        - name: R1SOFT_INSTALLED_ON_FEDORA_28
+          systemd:
+              name: sbm-agent
+              state: restarted
+    
