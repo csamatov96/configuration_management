@@ -5,7 +5,7 @@
     become_method: sudo # 
     tasks: #
       - block: #by using that module, we can apply one rule to multiple tasks
-        when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
+        #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
         - name: Create a Repository # 
           copy: #from local to remote system
               src: r1soft.repo
@@ -13,16 +13,18 @@
 
         - name: Install r1soft agent
               #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
-              package:
+          package:
                 name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
                 state: latest 
 
         - name: Start agent
               #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
-              systemd:
+          systemd:
                 name: sbm-agent #it was cdp
                 state: restarted 
 
         - name: Get key
               #when: ansible_distribution == "CentOS"
-              shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
+          shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
+        
+        when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
