@@ -3,7 +3,7 @@
   hosts: localhost
 
   vars_files: #2nd way of doing it
-    - /Users/chyngyzkan/Desktop/GitHub/configuration_management_april/p_m_p/vars_values 
+    - /Users/chyngyzkan/Desktop/GitHub/configuration_management_april/p_m_p/prod/vars_values #path
 
 
   tasks:
