@@ -29,7 +29,7 @@
         
         when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7" #(BLOCK IS MORE ELEGANT WAY)
       
-      #this is for centos 6
+      #this is for centos 8
       - block: #by using that module, we can apply one rule to multiple tasks
         #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
         - name: Create a Repository # 
@@ -46,7 +46,7 @@
         - name: Start agent
               #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
           service: #for centos6 not systemd
-                name: cdp-agent #it was sbm-agent, cdp-agent for centos6 
+                name: sbm-agent #it was sbm-agent, cdp-agent for centos6 
                 state: restarted 
 
         - name: Get key
@@ -54,3 +54,29 @@
           shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
         
         when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" #(BLOCK IS MORE ELEGANT WAY)
+
+        #this is for Fedora
+      - block: #by using that module, we can apply one rule to multiple tasks
+        #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
+        - name: Create a Repository # 
+          copy: #from local to remote system
+              src: r1soft.repo
+              dest: /etc/yum.repos.d/r1soft.repo 
+
+        - name: Install r1soft agent
+              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
+          package:
+                name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
+                state: latest 
+
+        - name: Start agent
+              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
+          service: #for centos6 not systemd
+                name: sbm-agent #it was sbm-agent, cdp-agent for centos6 
+                state: restarted 
+
+        - name: Get key
+              #when: ansible_distribution == "CentOS"
+          shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
+        
+        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "28" #(BLOCK IS MORE ELEGANT WAY)
