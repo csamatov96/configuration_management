@@ -114,8 +114,8 @@
         when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7" #(BLOCK IS MORE ELEGANT WAY)
 
 
-  handlers:
-    - name: R1SOFT_INSTALLED_ON_CENTOS_7
-      systemd:
-        name: sbm_agent
-        state: restarted
+    handlers:
+      - name: R1SOFT_INSTALLED_ON_CENTOS_7
+        systemd:
+            name: sbm_agent
+            state: restarted
