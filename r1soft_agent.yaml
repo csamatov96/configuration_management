@@ -53,7 +53,7 @@
               #when: ansible_distribution == "CentOS"
           shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
         
-    when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" #(BLOCK IS MORE ELEGANT WAY)
+          when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" #(BLOCK IS MORE ELEGANT WAY)
       
 
       #this is for centos 8
