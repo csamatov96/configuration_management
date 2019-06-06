@@ -1,0 +1,24 @@
+---
+  - name: Install r1soft 
+    hosts: target 
+    become: true 
+    become_method: sudo 
+    tasks:
+        - name: Create a Repository 
+          copy: #from local to remote system
+            src: r1soft.repo
+            dest: /etc/yum.repos.d/r1soft.repo 
+
+        - name: Install r1soft agent
+          package:
+            name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
+            state: latest 
+
+        - name: Start agent
+          systemd:
+            name: cdp-agent
+            state: restarted 
+
+        - name: Get key
+          shell: "r1soft setup --get-key http://r1soft.acirrustech.com"
+          
