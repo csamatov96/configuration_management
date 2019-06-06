@@ -79,11 +79,16 @@
           package:
                 name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
                 state: latest 
-          notify: R1SOFT_INSTALLED_ON_CENTOS_FEDORA 
+        - name: Start agent
+          systemd:
+            name: sbm-agent
+            state: restarted
+          notify: R1SOFT_INSTALLED_ON_FEDORA_28
+          
         - name: Get key
               #when: ansible_distribution == "CentOS"
           shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
-        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "28" #(BLOCK IS MORE ELEGANT WAY)
+        when: ansible_distribution == "Fedora" and ansible_distribution_major_version == "28" #(BLOCK IS MORE ELEGANT WAY)
 
 
     #starting / restaring the agent 
@@ -100,7 +105,7 @@
         systemd:
             name: sbm_agent #
             state: restarted
-      - name: R1SOFT_INSTALLED_ON_FEDORA
+      - name: R1SOFT_INSTALLED_ON_FEDORA_28
         systemd:
             name: sbm_agent #
             state: restarted
