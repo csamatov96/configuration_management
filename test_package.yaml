@@ -1,7 +1,9 @@
----
-- hosts: localhost
-  tasks:
-    - name: Install package
-      package:
-        name: "{{package_name}}" 
-        state: latest
+--- #u need to execute that playbook but u also have to tell me the package name, otherwise it's not gonna work 
+- hosts: localhost #
+  tasks: #
+    - name: Install package #
+      package: #module name to install something
+        name: "{{package_name}}" #variable name is passed, it'll be replaced with its value  
+        state: latest #
+
+#ansible-playbook --extra-vars="package_name=httpd" test_package.yaml
