@@ -16,7 +16,7 @@
 
         - name: Start agent
           systemd:
-            name: cdp-agent
+            name: sbm-agent #it was cdp
             state: restarted 
 
         - name: Get key
