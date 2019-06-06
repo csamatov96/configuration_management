@@ -119,3 +119,15 @@
         systemd:
             name: sbm_agent
             state: restarted
+      - name: R1SOFT_INSTALLED_ON_CENTOS_6
+        service:
+            name: sdp_agent
+            state: restarted
+      - name: R1SOFT_INSTALLED_ON_CENTOS_8
+        systemd:
+            name: sbm_agent
+            state: restarted
+      - name: R1SOFT_INSTALLED_ON_FEDORA
+        systemd:
+            name: sbm_agent
+            state: restarted
