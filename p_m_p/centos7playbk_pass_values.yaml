@@ -1,6 +1,11 @@
 ---
-- name: Creates EC2 CentOs Instance by passing values in CLI (not so elegant way of doing it)
+- name: Creates any kind of Instance by passing values in CLI (not so elegant way of doing it) or by using external file with prepared values
   hosts: localhost
+
+  vars_files: #2nd way of doing it
+    - /Users/chyngyzkan/Desktop/GitHub/configuration_management_april/p_m_p/vars_values 
+
+
   tasks:
     - name: Let's play and have some fun
       ec2:
@@ -11,4 +16,10 @@
         vpc_subnet: "{{vpc_subnet}}"
         instance_tags: "{{instance_tags}}"
         group_id: "{{group_id}}"
+        region: "{{region}}"
 
+
+#1st way is to pass all values through CLI, which is long and not professional way of doing it ->
+#ansible-playbook --extra-vars="key_name=ANSIBLE_TOWER_CLI”, “instance_type=t2.micro”, “image=ami-0f2b4fc905b0bd1f1”, “count=1”, “vpc_subnet_id=subnet-bc2b54c6”, “region=us-east-2”, “instance_tags=Name:CENTOS7”, “group_id=sg-090d492773e57659d" centos7playbk_pass_values.yaml
+
+#2nd way is to create a file like 'vars_values' and pass values to variables and in Ansible playbook, point to the path where that file is being stored by using 'vars_files' module so Ansible could read that file 
