@@ -19,20 +19,13 @@
                 name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
                 state: latest 
           notify: R1SOFT_INSTALLED_ON_CENTOS_7 #
-
-       #- name: Start agent
-              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
-       #  systemd:
-       #         name: sbm-agent #it was cdp
-       #         state: restarted 
-
         - name: Get key
-              #when: ansible_distribution == "CentOS"
+              #when: ansible_distribution == "CentOS" 
           shell: "r1soft-setup --get-key http://r1soft.acirrustech.com" #regular shell command 
         when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7" #(BLOCK IS MORE ELEGANT WAY)
 
     
-#this line os for centos7
+#this line os for centos6
       - block: #by using that module, we can apply one rule to multiple tasks
         #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
         - name: Create a Repository # 
@@ -45,22 +38,15 @@
           package:
                 name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
                 state: latest 
-          notify: R1SOFT_INSTALLED_ON_CENTOS_7 
-
-       #- name: Start agent
-              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
-       #  systemd:
-       #         name: sbm-agent #it was cdp
-       #         state: restarted 
-
+          notify: R1SOFT_INSTALLED_ON_CENTOS_6 
         - name: Get key
               #when: ansible_distribution == "CentOS"
           shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
-        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7" #(BLOCK IS MORE ELEGANT WAY)
+        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" #(BLOCK IS MORE ELEGANT WAY)
   
 
     
-#this line os for centos7
+#this line os for centos8
       - block: #by using that module, we can apply one rule to multiple tasks
         #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
         - name: Create a Repository # 
@@ -73,21 +59,14 @@
           package:
                 name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
                 state: latest 
-          notify: R1SOFT_INSTALLED_ON_CENTOS_7 
-
-       #- name: Start agent
-              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
-       #  systemd:
-       #         name: sbm-agent #it was cdp
-       #         state: restarted 
-
+          notify: R1SOFT_INSTALLED_ON_CENTOS_8 
         - name: Get key
               #when: ansible_distribution == "CentOS"
           shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
-        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7" #(BLOCK IS MORE ELEGANT WAY)
+        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "8" #(BLOCK IS MORE ELEGANT WAY)
 
     
-#this line os for centos7
+#this line os for Fedora
       - block: #by using that module, we can apply one rule to multiple tasks
         #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
         - name: Create a Repository # 
@@ -100,21 +79,14 @@
           package:
                 name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
                 state: latest 
-          notify: R1SOFT_INSTALLED_ON_CENTOS_7 
-
-       #- name: Start agent
-              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
-       #  systemd:
-       #         name: sbm-agent #it was cdp
-       #         state: restarted 
-
+          notify: R1SOFT_INSTALLED_ON_CENTOS_FEDORA 
         - name: Get key
               #when: ansible_distribution == "CentOS"
           shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
-        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7" #(BLOCK IS MORE ELEGANT WAY)
+        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "28" #(BLOCK IS MORE ELEGANT WAY)
 
 
-    #starting agent 
+    #starting / restaring the agent 
     handlers: 
       - name: R1SOFT_INSTALLED_ON_CENTOS_7
         systemd:
@@ -122,7 +94,7 @@
             state: restarted
       - name: R1SOFT_INSTALLED_ON_CENTOS_6
         service:
-            name: sdp_agent #
+            name: cdp_agent #
             state: restarted
       - name: R1SOFT_INSTALLED_ON_CENTOS_8
         systemd:
