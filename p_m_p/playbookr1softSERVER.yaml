@@ -15,8 +15,13 @@
           count: "{{count}}"
           vpc_subnet_id: "{{vpc_subnet_id}}" 
           region: "{{region}}"
-          user_data: file.txt
-          user_data: "{{ lookup('file', file.txt') }}"
+          #user_data: file.txt
+          #user_data: "{{ lookup('file', file.txt') }}"
+          user_data: #!/bin/bash
+                    yum install r1soft-cdp-enterprise-server -y
+                    rsoft-setup --user admin --pass redhat --http-port 80
+                    /etc/init.d/cdp-server restart
+
  
       
       #- name: Create a Repository # 
