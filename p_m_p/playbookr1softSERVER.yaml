@@ -15,7 +15,6 @@
           count: "{{count}}"
           vpc_subnet_id: "{{vpc_subnet_id}}" 
           region: "{{region}}"
-          volume_size: 100
           #user_data: file.txt
           #user_data: "{{ lookup('file', file.txt') }}"
           user_data: #!/bin/bash
