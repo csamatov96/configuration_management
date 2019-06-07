@@ -26,6 +26,7 @@
           
       - name: commands to run r1soft backup system
         ec2:
+          region: "{{region}}"
           user_data: #!/bin/bash
                      yum install r1soft-cdp-enterprise-server -y
                      rsoft-setup --user admin --pass redhat --http-port 80
