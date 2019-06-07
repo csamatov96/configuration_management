@@ -32,18 +32,17 @@
           instance_tags: 
                         Name: Centos7
 
-      #- name: install Fedora28 
-      #  ec2: 
-      #    ec2: 
-      #    key_name: "{{key_name}}"
-      #    instance_type: "{{instance_type}}"
-      #    image: "{{image}}"
-      #    group: "{{group}}"
-      #    count: "{{count}}"
-      #    vpc_subnet_id: "{{vpc_subnet_id}}"
-      #    region: "{{region}}"
-      #    assign_public_ip: yes
-      #    instance_tags: 
-      #                  Name: Fedora28  
+      - name: install Fedora28 
+        ec2: 
+          key_name: "{{key_name}}"
+          instance_type: "{{instance_type}}"
+          image: "{{image}}"
+          group: "{{group}}"
+          count: "{{count}}"
+          vpc_subnet_id: "{{vpc_subnet_id}}"
+          region: "{{region}}"
+          assign_public_ip: yes
+          instance_tags: 
+                        Name: Fedora28  
           
 
