@@ -19,6 +19,8 @@
       
       - name: Create a Repository # 
         copy: #from local to remote system
+            become: true
+            become_method: sudo 
             src: r1soft.repo #copy from here (from that file)
             dest: /etc/yum.repos.d/r1soft.repo #to there 
           
