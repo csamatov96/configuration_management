@@ -13,7 +13,7 @@
           count: "{{count}}"
           vpc_subnet_id: "{{vpc_subnet_id}}" 
           region: "{{region}}"
-          register: ec2
+          #register: ec2
       
       - name: Create a Repository # 
         copy: #from local to remote system
