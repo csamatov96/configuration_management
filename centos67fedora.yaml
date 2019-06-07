@@ -6,9 +6,10 @@
   
   tasks:
       - name: install centos6 
-        ec2: 
-          vars_files: 
+        vars_files: 
             - centos67fedora_values 
+        ec2: 
+
           key_name: "{{key_name}}"
           instance_type: "{{instance_type}}"
           image: "{{image}}"
@@ -21,9 +22,10 @@
                         Name: Centos6
 
       - name: install centos7
-        ec2: 
-          vars_files:
+        vars_files:
             - centos67fedora_values1
+        ec2: 
+          
           key_name: "{{key_name}}"
           instance_type: "{{instance_type}}"
           image: "{{image}}"
@@ -36,9 +38,10 @@
                         Name: Centos7
 
       - name: install Fedora28 
-        ec2: 
-          vars_files:
+        vars_files:
             - centos67fedora_values2
+        ec2: 
+          
           key_name: "{{key_name}}"
           instance_type: "{{instance_type}}"
           image: "{{image}}"
