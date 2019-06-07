@@ -1,7 +1,7 @@
 key_name:       "backup-server key"
 instance_type:  "t2.micro"
 image:          "ami-0a4e0492247630fe1"
-group:          "sg-090d492773e57659d"
+group:          "ANSIBLE_TASK"
 count:          "4"
 vpc_subnet_id:  "subnet-bc2b54c6"
 region:         "us-east-2"
