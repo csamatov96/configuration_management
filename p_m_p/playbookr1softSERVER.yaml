@@ -35,7 +35,7 @@
       #- name: commands to run r1soft backup system
         
          
-      - name: add 100GB of volume 
+      #- name: add 100GB of volume 
       - ec2_vol:
           instance_type: "{{instance_type}}" 
           volume_size: 100
