@@ -17,10 +17,8 @@
           region: "{{region}}"
           #user_data: file.txt
           #user_data: "{{ lookup('file', file.txt') }}"
-          user_data: #!/bin/bash
-                    yum install r1soft-cdp-enterprise-server -y
-                    rsoft-setup --user admin --pass redhat --http-port 80
-                    /etc/init.d/cdp-server restart
+          #user_data: #!/bin/bash
+                    
 
  
       
@@ -30,9 +28,11 @@
         copy: #from local to remote system
           src: r1soft.repo #copy from here (from that file)
           dest: /etc/yum.repos.d/r1soft.repo #to there 
-          
-          
+
       #- name: commands to run r1soft backup system
+       # shell: "yum install r1soft-cdp-enterprise-server -y"
+       # shell: "rsoft-setup --user admin --pass redhat --http-port 80"
+       # shell: "/etc/init.d/cdp-server restart"
         
          
       #- name: add 100GB of volume 

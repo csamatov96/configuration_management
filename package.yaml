@@ -4,7 +4,7 @@
     - name: Install 1 package #name of the 1st TASK
       become: yes
       become_method: sudo #privileges
-      package: #module itself
+      package: #module name 
         name: httpd #install the following 
         state: latest 
       

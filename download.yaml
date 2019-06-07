@@ -1,7 +1,7 @@
 ---
 - name: Helps to download file
   vars_prompt: #i wanna input from u 
-    - name: URL #whatever he gives save it and uppercase URL
+    - name: URL #whatever he gives save it here
       prompt: "Give me the url: " #give me the url to download 
       private: no #to let the user see what he inputs
     - name: DESTINATION #whatever he gives save it and uppercase URL
@@ -13,6 +13,6 @@
   become_method: sudo
   tasks: #so it'll do 2 things 1st it'll ask what to download and where to download
     - name: Download 1 package
-      get_url:
-        url: "{{URL}}" #this is how u r going to pass the variable 
+      get_url: #module name 
+        url: "{{URL}}" #this is how to pass values to the variable 
         dest: "{{DESTINATION}}" 

@@ -2,8 +2,8 @@
 - hosts: localhost #
   tasks: #
     - name: Install package #
-      package: #module name to install something
-        name: "{{package_name}}" #variable name is passed, it'll be replaced with its value  
+      package: #module name
+        name: "{{package_name}}" #variable name is given, it'll be replaced with the passed value  
         state: latest #
 
 #ansible-playbook --extra-vars="package_name=httpd" test_package.yaml

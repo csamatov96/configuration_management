@@ -2,8 +2,8 @@
   - hosts: localhost #
     tasks: 
       - name: Copy files
-        copy:
+        copy: #module name 
           src: /tmp/test
-          dest: /tmp/somefile
+          dest: /tmp/somefile 
         become: true
         become_method: sudo

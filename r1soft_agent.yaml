@@ -1,46 +1,47 @@
 ---
   - name: Install r1soft agent #
-    hosts: target #all, both works 
-    become: true #root privileges to install packages 
-    become_method: sudo # 
+    hosts: target #all
+    become: true # 
+    become_method: sudo #privileges to install packages and so on 
     tasks: #
     
 #this line os for centos7
       - block: #by using that module, we can apply one rule to multiple tasks
-        #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
+
         - name: Create a Repository # 
-          copy: #from local to remote system
-              src: r1soft.repo #copy from here (from that file)
-              dest: /etc/yum.repos.d/r1soft.repo #to there 
+          copy: #by using that module, we are able to copy from local system to remote system
+              src: r1soft.repo #
+              dest: /etc/yum.repos.d/r1soft.repo # 
 
         - name: Install r1soft agent 
-              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
+          
           package: #module name 
-                name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
+                name: serverbackup-enterprise-agent # 
                 state: latest 
           notify: R1SOFT_INSTALLED_ON_CENTOS_7 #
+
         - name: Get key
-              #when: ansible_distribution == "CentOS" 
+
           shell: "r1soft-setup --get-key http://r1soft.acirrustech.com" #regular shell command 
-        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7" #(BLOCK IS MORE ELEGANT WAY)
+        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7" #
 
     
 #this line os for centos6
       - block: #by using that module, we can apply one rule to multiple tasks
-        #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
+        
         - name: Create a Repository # 
           copy: #from local to remote system
               src: r1soft.repo
               dest: /etc/yum.repos.d/r1soft.repo 
 
         - name: Install r1soft agent
-              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
+              
           package:
-                name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
+                name: serverbackup-enterprise-agent # 
                 state: latest 
           notify: R1SOFT_INSTALLED_ON_CENTOS_6 
         - name: Get key
-              #when: ansible_distribution == "CentOS"
+              
           shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
         when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" #(BLOCK IS MORE ELEGANT WAY)
   
@@ -48,36 +49,36 @@
     
 #this line os for centos8
       - block: #by using that module, we can apply one rule to multiple tasks
-        #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
+        
         - name: Create a Repository # 
           copy: #from local to remote system
               src: r1soft.repo
               dest: /etc/yum.repos.d/r1soft.repo 
 
         - name: Install r1soft agent
-              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
+              
           package:
-                name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
+                name: serverbackup-enterprise-agent # 
                 state: latest 
           notify: R1SOFT_INSTALLED_ON_CENTOS_8 
         - name: Get key
-              #when: ansible_distribution == "CentOS"
+              
           shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
-        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "8" #(BLOCK IS MORE ELEGANT WAY)
+        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "8" #
 
     
 #this line os for Fedora
-      - block: #by using that module, we can apply one rule to multiple tasks
-        #when: ansible_distribution == "CentOS" #(BLOCK IS MORE ELEGANT WAY)
+      - block: #
+      
         - name: Create a Repository # 
-          copy: #from local to remote system
+          copy: #
               src: r1soft.repo
               dest: /etc/yum.repos.d/r1soft.repo 
 
         - name: Install r1soft agent
-              #when: ansible_distribution == "CentOS" (BLOCK IS MORE ELEGANT WAY)
+              
           package:
-                name: serverbackup-enterprise-agent #r1soft-cdp-enterprise-agent 
+                name: serverbackup-enterprise-agent #
                 state: latest 
         - name: Start agent
           systemd:
@@ -86,7 +87,7 @@
           notify: R1SOFT_INSTALLED_ON_FEDORA_28
           
         - name: Get key
-              #when: ansible_distribution == "CentOS"
+              
           shell: "r1soft-setup --get-key http://r1soft.acirrustech.com"
         when: ansible_distribution == "Fedora" and ansible_distribution_major_version == "28" #(BLOCK IS MORE ELEGANT WAY)
 
