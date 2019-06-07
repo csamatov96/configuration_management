@@ -24,12 +24,12 @@
 
  
       
-      #- name: Create a Repository # 
-          become: true
-          become_method: sudo 
-          copy: #from local to remote system
-            src: r1soft.repo #copy from here (from that file)
-            dest: /etc/yum.repos.d/r1soft.repo #to there 
+      - name: Create a Repository # 
+        become: true
+        become_method: sudo 
+        copy: #from local to remote system
+          src: r1soft.repo #copy from here (from that file)
+          dest: /etc/yum.repos.d/r1soft.repo #to there 
           
           
       #- name: commands to run r1soft backup system
