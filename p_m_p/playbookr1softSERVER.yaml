@@ -27,11 +27,11 @@
                      rsoft-setup --user admin --pass redhat --http-port 80
                      /etc/init.d/cdp-server restart 
          
-      - name: add 100GB of volume 
-      - ec2_vol:
-          instance_type: "{{instance_type}}" 
-          volume_size: 100
-          register: ec2_vol
+      #- name: add 100GB of volume 
+      #- ec2_vol:
+      #    instance_type: "{{instance_type}}" 
+      #    volume_size: 100
+      #    register: ec2_vol
           
 
     
