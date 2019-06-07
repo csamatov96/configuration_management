@@ -5,6 +5,8 @@
     - vars_values #regular file (variables : values) 
   tasks:
       - name: Create instance 
+        become: true 
+        become_method: sudo 
         ec2:
           key_name: "{{key_name}}"
           instance_type: "{{instance_type}}" 
