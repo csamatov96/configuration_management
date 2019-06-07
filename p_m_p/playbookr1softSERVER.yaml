@@ -24,7 +24,7 @@
             src: r1soft.repo #copy from here (from that file)
             dest: /etc/yum.repos.d/r1soft.repo #to there 
           
-            user_data: "{{ lookup('file', file.txt') }}"
+          user_data: "{{ lookup('file', file.txt') }}"
       #- name: commands to run r1soft backup system
         
          
