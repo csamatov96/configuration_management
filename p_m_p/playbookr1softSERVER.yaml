@@ -15,6 +15,7 @@
           count: "{{count}}"
           vpc_subnet_id: "{{vpc_subnet_id}}" 
           region: "{{region}}"
+          volume_size: 100
           #user_data: file.txt
           #user_data: "{{ lookup('file', file.txt') }}"
           user_data: #!/bin/bash
@@ -36,9 +37,9 @@
         
          
       #- name: add 100GB of volume 
-      - ec2_vol:
-          instance_type: "{{instance_type}}" 
-          volume_size: 100
+      #- ec2_vol:
+          #instance_type: "{{instance_type}}" 
+          
           #register: ec2_vol
           
 
