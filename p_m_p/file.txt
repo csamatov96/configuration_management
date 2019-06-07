@@ -1,0 +1,4 @@
+#!/bin/bash
+yum install r1soft-cdp-enterprise-server -y
+rsoft-setup --user admin --pass redhat --http-port 80
+/etc/init.d/cdp-server restart

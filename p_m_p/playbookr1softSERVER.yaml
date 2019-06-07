@@ -15,6 +15,7 @@
           count: "{{count}}"
           vpc_subnet_id: "{{vpc_subnet_id}}" 
           region: "{{region}}"
+     
           #register: ec2
       
       - name: Create a Repository # 
@@ -23,13 +24,10 @@
         copy: #from local to remote system
             src: r1soft.repo #copy from here (from that file)
             dest: /etc/yum.repos.d/r1soft.repo #to there 
+            user_data: "{{ lookup('file', file.txt') }}"
           
       #- name: commands to run r1soft backup system
         
-  user_data: #!/bin/bash
-             yum install r1soft-cdp-enterprise-server -y
-             rsoft-setup --user admin --pass redhat --http-port 80
-             /etc/init.d/cdp-server restart 
          
       #- name: add 100GB of volume 
       #- ec2_vol:
