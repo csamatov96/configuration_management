@@ -3,11 +3,13 @@
   hosts: localhost 
   become: yes
   become_method: sudo 
-  
+  vars_files: 
+            - centos67fedora_values 
+            - centos67fedora_values1
+            - centos67fedora_values2
+
   tasks:
       - name: install centos6 
-        vars_files: 
-            - centos67fedora_values 
         ec2: 
 
           key_name: "{{key_name}}"
@@ -22,8 +24,7 @@
                         Name: Centos6
 
       - name: install centos7
-        vars_files:
-            - centos67fedora_values1
+        
         ec2: 
           
           key_name: "{{key_name}}"
@@ -38,8 +39,8 @@
                         Name: Centos7
 
       - name: install Fedora28 
-        vars_files:
-            - centos67fedora_values2
+
+            
         ec2: 
           
           key_name: "{{key_name}}"
