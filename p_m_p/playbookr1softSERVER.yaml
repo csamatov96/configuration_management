@@ -32,14 +32,14 @@
           dest: /etc/yum.repos.d/r1soft.repo #to there 
           
           
-      #- name: commands to run r1soft backup system
+      - name: commands to run r1soft backup system
         
          
-      #- name: add 100GB of volume 
-      #- ec2_vol:
-      #    instance_type: "{{instance_type}}" 
-      #    volume_size: 100
-      #    register: ec2_vol
+      - name: add 100GB of volume 
+      - ec2_vol:
+          instance_type: "{{instance_type}}" 
+          volume_size: 100
+          #register: ec2_vol
           
 
     
