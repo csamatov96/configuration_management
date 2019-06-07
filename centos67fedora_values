@@ -14,10 +14,4 @@ count:          "3"
 vpc_subnet_id:  "subnet-bc2b54c6"
 region:         "us-east-2"
 
-key_name:       "backup-server key"
-instance_type:  "t2.micro"
-image:          "ami-007685be008c6037c"
-group:          "ANSIBLE_TASK"
-count:          "3"
-vpc_subnet_id:  "subnet-bc2b54c6"
-region:         "us-east-2"
+
