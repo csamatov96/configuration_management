@@ -5,8 +5,8 @@
   become_method: sudo 
   vars_files: 
             - centos67fedora_values 
-            - centos67fedora_values1
-            - centos67fedora_values2
+            - centos67fedora_values_1
+            - centos67fedora_values_2
 
   tasks:
       - name: install centos6 
