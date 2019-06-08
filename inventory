@@ -7,7 +7,7 @@
 18.223.156.164
 3.19.79.29
 
-3.17.133.188 ansible_user=debian
-18.191.115.112 ansible_user=debian
-3.17.129.215 ansible_user=debian
-3.17.161.85 ansible_user=debian
+3.17.133.188 ansible_user=fedora
+18.191.115.112 ansible_user=fedora
+3.17.129.215 ansible_user=fedora
+3.17.161.85 ansible_user=fedora
