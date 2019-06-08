@@ -96,17 +96,17 @@
     handlers: 
       - name: R1SOFT_INSTALLED_ON_CENTOS_7
         systemd:
-            name: sbm_agent #Centos7
+            name: sbm-agent #Centos7
             state: restarted
       - name: R1SOFT_INSTALLED_ON_CENTOS_6
         service:
-            name: cdp_agent #
+            name: cdp-agent #
             state: restarted
       - name: R1SOFT_INSTALLED_ON_CENTOS_8
         systemd:
-            name: sbm_agent #
+            name: sbm-agent #
             state: restarted
       - name: R1SOFT_INSTALLED_ON_FEDORA_28
         systemd:
-            name: sbm_agent #
+            name: sbm-agent #
             state: restarted
