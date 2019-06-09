@@ -1,2 +1,12 @@
 ---
-  - name: 
+  - name: Provision ec2 instance
+    hosts: all 
+    become: yes
+    become_method: root
+    tasks:
+      - name: Ping 
+        ping: 
+  
+  - import_playbook: r1soft_agent.yaml
+  - import_playbook: nagiosXI_agent.yaml
+  - import_playbook: filebeat.yaml 
