@@ -2,7 +2,7 @@
   - name: Provision ec2 instance
     hosts: all 
     become: yes
-    become_method: root
+    become_user: root
     tasks:
       - name: Ping 
         ping: 
