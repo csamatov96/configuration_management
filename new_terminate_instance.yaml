@@ -1,0 +1,10 @@
+---
+- name: Terminates an instance #name of the playbook
+
+  hosts: localhost #defined in /etc/ansible/hosts
+  tasks: #header
+    - name: Terminate instances #name of the 1st TASK
+      ec2: #by using that module we can specify
+          instance_ids: "{{instance_ids}}" #i-02ee7cd9bf196d151 #vm1
+          state: "{{state}}" #terminate #stopped, started 
+          region: "{{region}}" #us-east-2b
