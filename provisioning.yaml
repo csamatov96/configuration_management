@@ -7,6 +7,11 @@
       - name: Ping 
         ping: 
   
-  - import_playbook: r1soft_agent.yaml
-  - import_playbook: nagiosXI_agent.yaml
-  - import_playbook: filebeat.yaml 
+  - name: Install r1soft 
+    import_playbook: r1soft_agent.yaml
+  
+  - name: install nagiosXI_agent
+    import_playbook: nagiosXI_agent.yaml
+  
+  - name: Install filebeat
+    import_playbook: filebeat.yaml 
