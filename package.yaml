@@ -1,6 +1,6 @@
 ---
 - name: Installs 1 package 
-- hosts: all #defined in /etc/ansible/hosts
+  hosts: all
   tasks: #
     - name: Install 1 package #name of the 1st TASK
     
