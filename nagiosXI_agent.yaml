@@ -48,7 +48,7 @@
         when: ansible_distribution == "Amazon"
         shell: rpm -Uvh https://assets.nagios.com/downloads/ncpa/ncpa-latest.el6.i386.rpm
 
-      - name: Install ncpa on centos7
+      - name: Install ncpa on Amazon
         when: ansible_distribution == "Amazon"
         package:
           name: ncpa
