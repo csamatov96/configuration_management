@@ -1,6 +1,6 @@
 ---
   - name: Install r1soft agent #
-    hosts: target #all
+    hosts: all
     become: true # 
     become_method: sudo #privileges to install packages and so on 
     tasks: #
@@ -8,7 +8,7 @@
 #this line os for centos7
       - block: #by using that module, we can apply one rule to multiple tasks
 
-        - name: Create a Repository # 
+        - name: Created a Repository # 
           copy: #by using that module, we are able to copy from local system to remote system
               src: r1soft.repo #
               dest: /etc/yum.repos.d/r1soft.repo # 
@@ -17,7 +17,7 @@
           
           package: #module name 
                 name: serverbackup-enterprise-agent # 
-                state: latest 
+                state: present
           notify: R1SOFT_INSTALLED_ON_CENTOS_7 #
 
         - name: Get key
@@ -29,7 +29,7 @@
 #this line os for centos6
       - block: #by using that module, we can apply one rule to multiple tasks
         
-        - name: Create a Repository # 
+        - name: Created a Repository # 
           copy: #from local to remote system
               src: r1soft.repo
               dest: /etc/yum.repos.d/r1soft.repo 
@@ -38,7 +38,7 @@
               
           package:
                 name: serverbackup-enterprise-agent # 
-                state: latest 
+                state: present
           notify: R1SOFT_INSTALLED_ON_CENTOS_6 
         - name: Get key
               
@@ -59,7 +59,7 @@
               
           package:
                 name: serverbackup-enterprise-agent # 
-                state: latest 
+                state: present
           notify: R1SOFT_INSTALLED_ON_CENTOS_8 
         - name: Get key
               
@@ -79,7 +79,7 @@
               
           package:
                 name: serverbackup-enterprise-agent #
-                state: latest 
+                state: present 
         - name: Start agent
           systemd:
             name: sbm-agent
