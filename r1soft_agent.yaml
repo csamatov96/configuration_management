@@ -43,7 +43,7 @@
         - name: Get key
               
           shell: "r1soft-setup --get-key http://18.217.85.82/" 
-        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" #(BLOCK IS MORE ELEGANT WAY)
+        when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" #
   
 
     
@@ -89,7 +89,7 @@
         - name: Get key
               
           shell: "r1soft-setup --get-key http://18.217.85.82/"
-        when: ansible_distribution == "Fedora" and ansible_distribution_major_version == "28" #(BLOCK IS MORE ELEGANT WAY)
+        when: ansible_distribution == "Fedora" and ansible_distribution_major_version == "28" #
 
 
     #starting / restaring the agent 
