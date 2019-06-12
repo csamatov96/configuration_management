@@ -1,11 +1,12 @@
 ---
+- name: Installs 1 package 
 - hosts: all #defined in /etc/ansible/hosts
   tasks: #
     - name: Install 1 package #name of the 1st TASK
     
       package: #module name 
-        name: httpd #install the following 
-        state: present 
+        name: httpd # 
+        state: present # 
       become: yes
       become_method: sudo 
 
