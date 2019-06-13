@@ -1,0 +1,7 @@
+---
+- name: instance start stop and so on
+  tasks:
+      ec2:
+          instance_ids: "{{instance_ids}}"
+          state: "{{state}}"
+          region: "{{region}}"

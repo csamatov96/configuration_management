@@ -1,14 +1,14 @@
 ---
 - name: Helps to download file
-  vars_prompt: #i wanna input from u 
-    - name: URL #whatever he gives save it here
-      prompt: "Give me the url: " #give me the url to download 
-      private: no #to let the user see what he inputs
-    - name: DESTINATION #whatever he gives save it and uppercase URL
-      prompt: "Give me the location to put: " #give me the url to download 
-      private: no #to let the user see what he inputs
+  #vars_prompt: #i wanna input from u 
+  #  - name: URL #whatever he gives save it here
+  #    prompt: "Give me the url: " #give me the url to download 
+  #    private: no #to let the user see what he inputs
+  #  - name: DESTINATION #whatever he gives save it and uppercase URL
+  #     prompt: "Give me the location to put: " #give me the url to download 
+  #     private: no #to let the user see what he inputs
 
-  hosts: all
+  hosts: all #"{{HOST}}"
   become: yes
   become_method: sudo
   tasks: #so it'll do 2 things 1st it'll ask what to download and where to download

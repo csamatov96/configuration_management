@@ -14,3 +14,4 @@
           vpc_subnet_id: "{{vpc_subnet_id}}" 
           region: "{{region}}"
           #user_data: "{{ lookup('file', 'user_data.sh') }}"
+          
