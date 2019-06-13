@@ -8,7 +8,7 @@
   #     prompt: "Give me the location to put: " #give me the url to download 
   #     private: no #to let the user see what he inputs
 
-  hosts: all #"{{HOST}}"
+  hosts: "{{HOST}}"
   become: yes
   become_method: sudo
   tasks: #so it'll do 2 things 1st it'll ask what to download and where to download
