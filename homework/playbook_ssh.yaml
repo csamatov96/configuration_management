@@ -13,3 +13,8 @@
         register: res 
       - debug: var=res 
 
+#1. go to /etc/ansible/ansible.cfg and uncomment the inventory line 
+#2. go to /etc/ansible/hosts file and put the IP of ur instance 
+#3. run ansible-playbook -u centos playbook_ssh.yaml
+#4. connect to ur instance and go to /tmp and u'll see id_ssh_rsa id_ssh_rsa.pub keys 
+
