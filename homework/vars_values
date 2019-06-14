@@ -6,4 +6,5 @@ group: "allow_ssh_and_awx"
 count: 1 
 vpc_subnet_id: "subnet-bc2b54c6"
 region: "us-east-2"
-instance_tags: "CENTOS7"
+instance_tags:
+            Name : "CENTOS7"
