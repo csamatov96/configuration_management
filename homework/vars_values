@@ -1,7 +1,7 @@
-name: "ec2-instance"
 key_name: "ANSIBLE_TOWER_CLI"
-vpc_subnet_id: "subnet-bc2b54c6"
 instance_type: "t2.micro"
-security_group: "allow_ssh_and_awx"
-image_id: "ami-03cebf94e918675be"
-tag_name: "homework_task"
+image: "ami-03cebf94e918675be"
+group: "allow_ssh_and_awx"
+count: 1 
+vpc_subnet_id: "subnet-bc2b54c6"
+region: "us-east-2"

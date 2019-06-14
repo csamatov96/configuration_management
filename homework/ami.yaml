@@ -1,18 +1,21 @@
 ---
-- name: creates ec2 instance 
+- name:
   hosts: localhost 
   become: yes
-  become_method: yes
-  vars_file: 
-          - vars_values  
-  ec2:
-      name: "{{name}}"
-      key_name: "{{key_name}}"
-      vpc_subnet_id: "{{vpc_subnet_id}}"
-      instance_type: "{{instance_type}}"
-      security_group: "{{security_group}}"
-      network:
-        assign_public_ip: true
-      image_id: "{{image_id}}"
-      tags:
-        Environment: "{{tag_name}}"
+  become_method: sudo 
+  vars_files: 
+            - vars_values 
+
+  tasks:
+      - name: install centos7 
+        ec2: 
+          key_name: "{{key_name}}"
+          instance_type: "{{instance_type_value}}"
+          image: "{{image}}"
+          group: "{{group}}"
+          count: "{{count}}"
+          vpc_subnet_id: "{{vpc_subnet_id}}"
+          region: "{{region}}"
+          assign_public_ip: yes
+          instance_tags: 
+                        Name: Centos7
