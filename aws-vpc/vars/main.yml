@@ -1,0 +1,24 @@
+---
+#vars file for aws-vpc
+aws_access_key: "AKIAZT7EDFVEEM44RPHI"
+aws_secret_key: "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"
+region: "us-east-2"
+ 
+#VPC
+vpc_cidr: 10.10.0.0/24
+vpc_name: "Ansible VPC TASK"
+  
+#Subnet
+subnet_name: "Ansible Subnet TASK"
+subnet_cidr: 10.10.0.0/26
+   
+#Internet Gateway Name
+igw_name: "Traffic IGW TASK"
+    
+securitygroup_name: "Ansible Security Group TASK"
+     
+ec2_tag: "WebServer TASK"
+      
+#The local path to which we would save our EC2 Private Key
+ec2_key_directory: "/home/ansible/roles/aws-vpc/"
+keypair_name: "ANSIBLE_TOWER_CLI"
