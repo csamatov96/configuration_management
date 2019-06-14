@@ -1,6 +1,8 @@
 ---
 - name: This simple playbook creates SSH-KEY
   hosts: target
+  become: yes
+  become_method: sudo 
   #connection: local
   gather_facts: false
   tasks:
