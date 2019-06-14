@@ -13,7 +13,7 @@
         ec2: 
 
           key_name: "{{key_name}}"
-          instance_type: "{{instance_type}}"
+          instance_type: "{{instance_type_value}}"
           image: "{{image}}"
           group: "{{group}}"
           count: "{{count}}"

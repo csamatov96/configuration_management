@@ -1,0 +1,13 @@
+---
+- name: This playbook creates SSH-KEY on any region u want
+  hosts: all
+  connection: local
+  gather_facts: false
+  tasks:
+      - name: let's play
+        openssh_keypair: 
+            path: /tmp/
+            size: 2048
+        register: res 
+      - debug: var=res 
+
