@@ -5,12 +5,11 @@
   become_method: sudo 
   vars_files: 
             - vars_values 
-
   tasks:
-      - name: install centos7 
+      - name: "{{name}}" 
         ec2: 
           key_name: "{{key_name}}"
-          instance_type: "{{instance_type_value}}"
+          instance_type: "{{instance_type}}"
           image: "{{image}}"
           group: "{{group}}"
           count: "{{count}}"

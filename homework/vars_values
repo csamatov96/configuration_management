@@ -1,3 +1,4 @@
+name: "CentOS7"
 key_name: "ANSIBLE_TOWER_CLI"
 instance_type: "t2.micro"
 image: "ami-03cebf94e918675be"
