@@ -12,26 +12,26 @@
 
 - name: associate subnet to the VPC
   ec2_vpc_subnet:
-   state: present
-   vpc_id: "{{ vpc_id }}"
-   region: "{{ region }}"
-   cidr: "{{ subnet_cidr }}"
-   aws_access_key: "{{ aws_access_key }}"
-   aws_secret_key: "{{ aws_secret_key }}"
-   map_public: yes
-   resource_tags:
-     Name: "{{ subnet_name }}"
+    state: present
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    cidr: "{{ subnet_cidr }}"
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    map_public: yes
+    resource_tags:
+    Name: "{{ subnet_name }}"
   register: subnet
  
 - name: create IGW
   ec2_vpc_igw:
-   vpc_id: "{{ vpc_id }}"
-   region: "{{ region }}"
-   aws_access_key: "{{ aws_access_key }}"
-   aws_secret_key: "{{ aws_secret_key }}"
-   state: "present"
-   tags:
-     Name: "{{ igw_name }}"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ region }}"
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    state: "present"
+    tags:
+    Name: "{{ igw_name }}"
   register: igw
 
 - name: Route IGW
@@ -69,7 +69,7 @@
     register: security_group
 
 - name: Create EC2 server
-   ec2:
+  ec2:
     image: ami-467ca739
     wait: yes
     instance_type: t2.micro
