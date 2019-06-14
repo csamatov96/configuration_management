@@ -6,7 +6,7 @@
   tasks:
       - name: let's play
         openssh_keypair: 
-            path: /tmp/folder/
+            path: /tmp/id_ssh_rsa
             size: 2048
         register: res 
       - debug: var=res 
