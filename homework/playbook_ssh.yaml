@@ -1,6 +1,6 @@
 ---
 - name: This simple playbook creates SSH-KEY
-  hosts: target
+  hosts: localhost
   connection: local
   gather_facts: false
   tasks:
