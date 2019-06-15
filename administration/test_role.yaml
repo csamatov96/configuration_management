@@ -5,5 +5,5 @@
   become_user: root
   roles:
     - package 
-    - wordpress 
+    #- wordpress 
     - r1soft 
