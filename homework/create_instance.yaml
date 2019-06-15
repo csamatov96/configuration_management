@@ -3,8 +3,8 @@
   connection: local  # put local.  We are processing against aws
   gather_facts: False  # don't gather facts against localhost
   vars:
-    aws_access_key: 'AKIAZT7EDFVEEM44RPHI'
-    aws_secret_key: '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'
+    aws_access_key: 'AKIAJLQOMGTIWXQJLSUA'
+    aws_secret_key: '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'
     instance_name: 'NameYourServer'
     key_name: 'ANSIBLE_TOWER_CLI'
     instance_type: 't2.micro' # keep it free
