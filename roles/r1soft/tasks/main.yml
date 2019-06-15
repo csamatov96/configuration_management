@@ -1,2 +1,17 @@
 ---
 # tasks file for r1soft
+- block: #by using that module, we can apply one rule to multiple tasks
+  - name: Created a Repository # 
+    copy: #by using that module, we are able to copy from local system to remote system
+      src: r1soft.repo #
+      dest: /etc/yum.repos.d/r1soft.repo # 
+
+  - name: Install r1soft agent 
+    package: #module name 
+      name: serverbackup-enterprise-agent # 
+      state: present
+    
+  - name: Get key
+    shell: "r1soft-setup --get-key http://18.217.85.82/" #regular shell command 
+    when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7" #
+
