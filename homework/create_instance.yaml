@@ -39,7 +39,7 @@
         region: "{{ region }}"
         filters:
           attachment.instance-id: "{{ ec2_instance.instance_ids }}"
-      register: volume_facts
+      #register: volume_facts
     - name: create volume tags for instance 
       ec2_tag:
         aws_access_key: "{{ aws_access_key }}"
