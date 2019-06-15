@@ -1,0 +1,30 @@
+---
+- hosts: localhost  # put localhost.  We are processing against aws
+  connection: local  # put local.  We are processing against aws
+  gather_facts: False  # don't gather facts against localhost 
+  vars: 
+   
+    aws_access_key: 'AKIAJLQOMGTIWXQJLSUA'
+    aws_secret_key: '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'
+    instance_id: 'i-0c5321ca17d937363'
+    ami_name: 'ami-03cebf94e918675be'
+  tasks:
+    - name: create ami
+      ec2_ami:
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_key }}"
+        instance_id: "{{ instance_id }}"
+        name: "{{ ami_name }}" 
+        no_reboot: yes
+        delete_snapshot: yes
+        wait: yes
+        tags:
+          Name: "{{ ami_name }}" 
+        device_mapping:
+          - device_name: '/dev/xvda'
+            volume_type: 'gp2'
+            delete_on_termination: true
+      register: ami_result
+    - name: degug
+      debug:
+        msg: "{{ ami_result }}"
