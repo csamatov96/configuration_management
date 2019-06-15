@@ -1,21 +1,21 @@
 ---
 # tasks file for wordpress
 
-   tasks: #header 
+#   tasks: #header 
      - name : Install necessary packages #name of the 1st TASK
        package: #by using that module, install the following packages 
          name : "{{item}}" #for EVERY ITEM
-         state: latest
+         state: present
        with_items: #of the following list of items, install that item 
-          - wget
-          - unzip
-          - httpd
-          - php 
-          - php-gd
-          - mysql
-          - mariadb-server
-          - php-mysql
-          - php-fpm 
+        - wget
+        - unzip
+        - httpd
+        - php 
+        - php-gd
+        - mysql
+        - mariadb-server
+        - php-mysql
+        - php-fpm 
        ignore_errors: true #
      - name : New shell for updated php #name of the 2nd TASK
        shell: "sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2" #by using that module, install the following
