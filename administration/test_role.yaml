@@ -6,4 +6,5 @@
   roles:
     - package 
     #- wordpress 
+    - frogyyen.centos7-wordpress
     - r1soft 
