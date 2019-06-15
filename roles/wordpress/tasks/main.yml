@@ -38,10 +38,10 @@
   ignore_errors: yes
 
 
-     - name: restart httpd #name of the 6th TASK 
-       systemd: #it's like systemctl or service, by using that module, restart HTTPD 
-         name: httpd
-         state: restarted 
-         enabled: yes
-       become: yes
-       become_method: sudo #privileges
+- name: restart httpd #name of the 6th TASK 
+  systemd: #it's like systemctl or service, by using that module, restart HTTPD 
+    name: httpd
+    state: restarted 
+    enabled: yes
+  become: yes
+  become_method: sudo #privileges
