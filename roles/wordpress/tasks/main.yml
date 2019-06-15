@@ -16,10 +16,12 @@
   ignore_errors: true #
 
 - name : New shell for updated php #name of the 2nd TASK
-  shell: "sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2" #by using that module, install the following
+  become: yes
+  become_method: sudo 
+  shell : "amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2" #by using that module, install the following
 
-- name: Download wordpress package #name of the 3rd TASK
-  get_url: #by using that module, we can download something from inet 
+- name : Download wordpress package #name of the 3rd TASK
+  get_url : #by using that module, we can download something from inet 
     url: "https://wordpress.org/latest.tar.gz" #path 
     dest: /tmp/ #it's where it'll be stored
 
