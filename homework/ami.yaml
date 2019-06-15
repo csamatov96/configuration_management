@@ -1,8 +1,14 @@
 ---
 - name:
-  hosts: localhost 
+  hosts: localhost # put localhost.  We are processing against aws
+  connection: local  # put local.  We are processing against aws
+  gather_facts: False  # don't gather facts against localhost
   become: yes
   become_method: sudo 
+  vars:
+    aws_access_key: 'AKIAZT7EDFVEEM44RPHI'
+    aws_secret_key: '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'
+
   vars_files: 
             - vars_values 
   tasks:
@@ -18,3 +24,32 @@
           assign_public_ip: yes
           instance_tags: 
                         Name: Centos7
+      #creates an ami from an existing running AWS instance.
+      - name: "{{}}"
+        vars: 
+          aws_access_key: 'AKIAZT7EDFVEEM44RPHI'
+          aws_secret_key: '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'
+          instance_id: 'i-0c5321ca17d937363'
+          ami_name: 'AMI-TASK_06_14_19'
+          tasks:
+              - name: create ami
+                ec2_ami:
+                        aws_access_key: "{{ aws_access_key }}"
+                        aws_secret_key: "{{ aws_secret_key }}"
+                        instance_id: "{{ instance_id }}"
+                        name: "{{ ami_name }}" 
+                        no_reboot: yes
+                        delete_snapshot: yes
+                        wait: yes
+                        tags:
+                            Name: "{{ ami_name }}" 
+                        device_mapping:
+                          - device_name: '/dev/xvda'
+                            volume_type: 'gp2'
+                            delete_on_termination: true
+                register: ami_result
+              - name: degug
+                debug:
+                      msg: "{{ ami_result }}"
+                        
+      

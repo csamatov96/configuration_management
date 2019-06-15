@@ -7,3 +7,5 @@ count: 1
 vpc_subnet_id: "subnet-bc2b54c6"
 region: "us-east-2"
 
+name: "creates an ami from an existing running AWS instance"
+
