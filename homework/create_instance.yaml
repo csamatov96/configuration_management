@@ -11,7 +11,7 @@
     image: 'ami-03cebf94e918675be' # free ami from Amazon us-east-2 region
     vpc_subnet_id: 'subnet-bc2b54c6'
     group_id: 'allow_ssh_and_awx'
-    #zone: 'us-east-2'
+    zone: 'us-east-2'
     region: 'us-east-2'
   tasks:
     - name: create an aws instance
