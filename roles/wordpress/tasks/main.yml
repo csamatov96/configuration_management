@@ -1,43 +1,41 @@
 ---
-# tasks file for wordpress
+- name : Install necessary packages #name of the 1st TASK
+  package: #by using that module, install the following packages 
+    name : "{{item}}" #for EVERY ITEM
+    state: present
+  with_items: #of the following list of items, install that item 
+    - wget
+    - unzip
+    - httpd
+    - php 
+    - php-gd
+    - mysql
+    - mariadb-server
+    - php-mysql
+    - php-fpm 
+  ignore_errors: true #
 
-#   tasks: #header 
-     - name : Install necessary packages #name of the 1st TASK
-       package: #by using that module, install the following packages 
-         name : "{{item}}" #for EVERY ITEM
-         state: present
-       with_items: #of the following list of items, install that item 
-        - wget
-        - unzip
-        - httpd
-        - php 
-        - php-gd
-        - mysql
-        - mariadb-server
-        - php-mysql
-        - php-fpm 
-       ignore_errors: true #
-     - name : New shell for updated php #name of the 2nd TASK
-       shell: "sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2" #by using that module, install the following
+- name : New shell for updated php #name of the 2nd TASK
+  shell: "sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2" #by using that module, install the following
 
-     - name: Download wordpress package #name of the 3rd TASK
-       get_url: #by using that module, we can download something from inet 
-          url: "https://wordpress.org/latest.tar.gz" #path 
-          dest: /tmp/ #it's where it'll be stored
+- name: Download wordpress package #name of the 3rd TASK
+  get_url: #by using that module, we can download something from inet 
+    url: "https://wordpress.org/latest.tar.gz" #path 
+    dest: /tmp/ #it's where it'll be stored
 
-     - name : Unzip wordpress file #name of the 4th TASK
-       unarchive: #by using that module, we can unzip something we downloaded  
-         src: "/tmp/wordpress-5.2.1.tar.gz" #path 
-         dest: "/var/www/html/" #it's where it'll be stored
-         remote_src: yes #???
-       become: yes
-       become_method: sudo #privileges
+- name : Unzip wordpress file #name of the 4th TASK
+  unarchive: #by using that module, we can unzip something we downloaded  
+    src: "/tmp/wordpress-5.2.1.tar.gz" #path 
+    dest: "/var/www/html/" #it's where it'll be stored
+    remote_src: yes #???
+  become: yes
+  become_method: sudo #privileges
 
-     - name :  Move files to html folder #name of the 5th TASK
-       shell: "mv /var/www/html/wordpress/*  /var/www/html/" #by using that module, u got access to SHELL and u can do anything
-       become: yes
-       become_method: sudo #privileges
-       ignore_errors: yes
+- name :  Move files to html folder #name of the 5th TASK
+  shell: "mv /var/www/html/wordpress/*  /var/www/html/" #by using that module, u got access to SHELL and u can do anything
+  become: yes
+  become_method: sudo #privileges
+  ignore_errors: yes
 
 
      - name: restart httpd #name of the 6th TASK 
