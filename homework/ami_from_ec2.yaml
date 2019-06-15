@@ -3,8 +3,8 @@
   connection: local  # put local.  We are processing against aws
   gather_facts: False  # don't gather facts against localhost 
   vars: 
-    aws_access_key: 'AKIAJLQOMGTIWXQJLSUA'
-    aws_secret_key: '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'
+    aws_access_key: ''
+    aws_secret_key: ''
     instance_id: 'i-0c5321ca17d937363'
     ami_name: 'ami-03cebf94e918675be'
   tasks:
