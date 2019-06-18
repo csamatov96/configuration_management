@@ -22,7 +22,7 @@
 
         - name: Get key
 
-          shell: "r1soft-setup --get-key http://18.223.44.227/" #regular shell command 
+          shell: "r1soft-setup --get-key http://18.218.62.229/" #regular shell command 
         when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7" #
 
     
@@ -42,7 +42,7 @@
           notify: R1SOFT_INSTALLED_ON_CENTOS_6 
         - name: Get key
               
-          shell: "r1soft-setup --get-key http://18.223.44.227/" 
+          shell: "r1soft-setup --get-key http://18.218.62.229/" 
         when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6" #
   
 
@@ -63,7 +63,7 @@
           notify: R1SOFT_INSTALLED_ON_CENTOS_8 
         - name: Get key
               
-          shell: "r1soft-setup --get-key http://18.223.44.227/"
+          shell: "r1soft-setup --get-key http://18.218.62.229/"
         when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "8" #
 
     
@@ -88,7 +88,7 @@
           
         - name: Get key
               
-          shell: "r1soft-setup --get-key http://18.223.44.227/"
+          shell: "r1soft-setup --get-key http://18.218.62.229/"
         when: ansible_distribution == "Fedora" and ansible_distribution_major_version == "28" #
 
 
