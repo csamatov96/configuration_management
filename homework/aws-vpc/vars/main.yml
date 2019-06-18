@@ -1,7 +1,7 @@
 ---
 #vars file for aws-vpc
-aws_access_key: "AKIAZT7EDFVEEM44RPHI"
-aws_secret_key: "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"
+aws_access_key: ""
+aws_secret_key: ""
 region: "us-east-2"
  
 #VPC
